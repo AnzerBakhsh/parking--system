@@ -1,4 +1,4 @@
-
+// src/service/vehicleApi.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const vehicleApi = createApi({
@@ -7,7 +7,7 @@ export const vehicleApi = createApi({
     baseUrl: 'http://192.168.10.23:5005/',
   }),
   endpoints: (builder) => ({
-    
+    // Park Vehicle Mutation (Already exists)
     parkVehicle: builder.mutation({
       query: (data) => ({
         url: 'vehicle/park',
@@ -16,11 +16,12 @@ export const vehicleApi = createApi({
       }),
     }),
     
+    // New Exit Vehicle Mutation
     exitVehicle: builder.mutation({
       query: (ticketId) => ({
         url: 'vehicle/exit',
         method: 'POST',
-        body: { ticketId }, 
+        body: { ticketId },  // Sending ticketId as the request body
       }),
     }),
   }),

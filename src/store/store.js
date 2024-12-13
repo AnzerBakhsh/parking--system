@@ -1,16 +1,16 @@
-// src/store.js
+
 import { configureStore } from '@reduxjs/toolkit';
-import { vehicleApi } from '../service/vehicleApi'; // Import the vehicle API service
-import { parkingLotApi } from '../service/parkingLotApi'; // Import the parking lot API service
+import { vehicleApi } from '../service/vehicleApi';  // Import the vehicle API service
+import { parkingApi } from '../service/parkingApi';  // Import the correct parkingApi service
 
 export const store = configureStore({
   reducer: {
-    // Add both API reducers to the store
+    
     [vehicleApi.reducerPath]: vehicleApi.reducer,
-    [parkingLotApi.reducerPath]: parkingLotApi.reducer,
+    [parkingApi.reducerPath]: parkingApi.reducer,  
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(vehicleApi.middleware) // Add vehicleApi middleware
-      .concat(parkingLotApi.middleware), // Add parkingLotApi middleware
+      .concat(vehicleApi.middleware)  // Add vehicleApi middleware
+      .concat(parkingApi.middleware),  // Add parkingApi middleware (this should match the import above)
 });
