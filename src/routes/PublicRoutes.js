@@ -25,7 +25,7 @@ const PublicRoutes = [{
     },
 
     {
-        path: '/park-vehicle',
+        path: '/park-vehicle/:id',
         component: ParkVehicle,
          layout: 'public'
     },

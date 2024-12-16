@@ -1,12 +1,14 @@
-// src/components/ParkVehicle.jsx
 import React, { useState } from 'react';
 import { useParkVehicleMutation } from '../../service/vehicleApi';
 import { toast } from 'react-toastify'; 
+import { useParams } from 'react-router-dom';
 
 const ParkVehicle = () => {
+  const param = useParams()
+
   const [vehicleSize, setVehicleSize] = useState(1); 
   const [plateNumber, setPlateNumber] = useState('');
-  const [parkingLotId, setParkingLotId] = useState(1); 
+  const [parkingLotId, setParkingLotId] = useState(parseInt(param.id)); 
 
   const [parkVehicle, { isLoading, isSuccess, isError, error }] = useParkVehicleMutation();
 
@@ -68,16 +70,13 @@ const ParkVehicle = () => {
         {/* Parking Lot */}
         <div>
           <label htmlFor="parkingLotId" className="block text-sm font-medium text-gray-700">Parking Lot</label>
-          <select
+          <input
             id="parkingLotId"
-            value={parkingLotId}
+            value={param.id}
             onChange={(e) => setParkingLotId(Number(e.target.value))}
             className="mt-2 block w-full px-4 py-2 border border-gray-300 rounded-md"
           >
-            <option value={1}>Lot 1</option>
-            <option value={2}>Lot 2</option>
-            <option value={3}>Lot 3</option>
-          </select>
+          </input>
         </div>
 
         {/* Submit Button */}
@@ -98,6 +97,7 @@ const ParkVehicle = () => {
         {isSuccess && (
           <div className="text-green-600 mt-2">
             <p>Parking  Successfully!</p>
+           
           </div>
         )}
       </form>
