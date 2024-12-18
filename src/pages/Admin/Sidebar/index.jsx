@@ -12,7 +12,7 @@ const Sidebar = ({isOpen,toggleSidebar,links}) => {
      
       <div className="flex items-center justify-between p-4 border-b border-gray-700">
         <span className={`text-xl font-bold transition-all duration-300 ${!isOpen && "hidden"}`}>
-          My App
+          Admin
         </span>
         <button
           onClick={toggleSidebar}

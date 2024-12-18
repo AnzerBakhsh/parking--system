@@ -9,8 +9,9 @@ const CreateLot = () => {
     slotkey: 0,
   });
 
-  const [createParkingLot, { isLoading, isSuccess, isError, error }] = useCreateParkingLotMutation();
 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [createParkingLot, { isLoading, isError, error }] = useCreateParkingLotMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,16 +25,20 @@ const CreateLot = () => {
         name: lotData.name,
         rank: lotData.rank,
         nSlotsKey: { 1: 1, 2: 2, 3: 3 },  
-      }
+      };
 
       const response = await createParkingLot(payload).unwrap(); 
 
       console.log('Parking Lot Created:', response);
+
+     
+      setSuccessMessage('Parking Lot Created Successfully!');
       setLotData({
         name: '',
         rank: 0,
         slotkey: 0,
       });
+
     } catch (err) {
       console.error('Error creating parking lot:', err);
     }
@@ -96,17 +101,17 @@ const CreateLot = () => {
           {isLoading ? 'Creating Lot...' : 'Create Lot'}
         </button>
 
-        {/* Error handling */}
+    
         {isError && (
           <div className="text-red-600 mt-2">
             <p>Error: {error.message}</p>
           </div>
         )}
 
-        {/* Success message */}
-        {isSuccess && (
+
+        {successMessage && (
           <div className="text-green-600 mt-2">
-            <p>Parking Lot Created Successfully!</p>
+            <p>{successMessage}</p>
           </div>
         )}
       </form>
