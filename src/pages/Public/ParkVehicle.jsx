@@ -54,6 +54,7 @@ const ParkVehicle = () => {
   };
 
 
+  
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold mb-4 text-black">Park a Vehicle</h2>
