@@ -1,9 +1,10 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+const BASE_URL = import.meta.env.VITE_API_URL
 
 export const parkingApi = createApi({
   reducerPath: 'parkingApi', 
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://192.168.10.23:5005' }), 
+  baseQuery: fetchBaseQuery(`${BASE_URL}`), 
   endpoints: (builder) => ({
     getParkingSlots: builder.query({
       query: () => '/parking_lot/status', 
