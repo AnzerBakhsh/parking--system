@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const ParkingLot = () => {
   const { data, error, isLoading, refetch } = useGetParkingSlotsQuery();
-
+  console.log({data});
+  
   console.log("error", data);
 
   if (isLoading) return <p className="text-center text-lg">Loading...</p>;
