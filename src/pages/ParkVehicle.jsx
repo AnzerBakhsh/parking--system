@@ -27,6 +27,7 @@ const ParkVehicle = () => {
       setVehicleSize(1);
       setParkingLotId(1);
     } catch (err) {
+      console.log("error--->" , err);
       toast.error('Error parking vehicle: ' + (err?.message || 'Unknown error'));
     }
     
