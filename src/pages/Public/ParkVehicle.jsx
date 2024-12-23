@@ -17,6 +17,7 @@ const ParkVehicle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     const vehicleData = {
       vehicleSizeId: vehicleSize,
       plateNumber: plateNumber,
@@ -26,15 +27,14 @@ const ParkVehicle = () => {
 
     try {
       const response = await parkVehicle(vehicleData).unwrap();
-
-     
       console.log("Parked Vehicle Response:", response.data);
-
+      let currentSlots = JSON.parse(localStorage.getItem("slot_ids")) || [];
+      if (!currentSlots.includes(param.id)) {
+        currentSlots.push(param.id);
+      }
+      localStorage.setItem("slot_ids", JSON.stringify(currentSlots));
       const parkedVehicle = response.data;
-
-      
       const ticketStatus = parkedVehicle.ticketStatus || 'Active';
-
       setTicketId(parkedVehicle.id);
       setTicketDetails({
         plateNumber: parkedVehicle.plate_number,
@@ -48,13 +48,12 @@ const ParkVehicle = () => {
       setPlateNumber('');
       setVehicleSize(1);
       setParkingLotId(1);
+
     } catch (err) {
       toast.error('Error parking vehicle: ' + (err?.message || 'Unknown error'));
     }
   };
 
-
-  
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold mb-4 text-black">Park a Vehicle</h2>
