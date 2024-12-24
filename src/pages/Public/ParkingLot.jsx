@@ -9,7 +9,7 @@ const ParkingLot = () => {
   console.log("error", data);
 
   if (isLoading) return <p className="text-center text-lg">Loading...</p>;
-  
+
   return (
     <div className="container mx-auto px-4 py-6">
       <h1 className="text-3xl font-semibold text-center mb-6">Parking Lot Status</h1>

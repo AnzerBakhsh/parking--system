@@ -11,7 +11,7 @@ const AdminLayout = ({ children }) => {
 
   const links = [
     { to: "/admin/dashboard", label: "Home", icon: <FaHome /> },
-    { to: "/admin/parking-lot", label: "Status", icon: <FaInfoCircle /> },
+    { to: "/admin/parking-status", label: "Status", icon: <FaInfoCircle /> },
     { to: "/admin/create-lot", label: "Create Lot", icon: <IoMdAdd />    },
   ];
   return (
